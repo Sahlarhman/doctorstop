@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Doctors</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function bookDoctor(doctorName) {
+            window.location.href = "availability.html?doctor=" + encodeURIComponent(doctorName);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Available Doctors</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Select a Doctor for Consultation</h2>
+            <ul class="doctor-list">
+                <li>Dr. John Smith - Cardiologist <button onclick="bookDoctor('Dr. John Smith')">Book Now</button></li>
+                <li>Dr. Lisa Wong - Dermatologist <button onclick="bookDoctor('Dr. Lisa Wong')">Book Now</button></li>
+                <li>Dr. Mark Taylor - Neurologist <button onclick="bookDoctor('Dr. Mark Taylor')">Book Now</button></li>
+                <li>Dr. Sarah Johnson - Pediatrician <button onclick="bookDoctor('Dr. Sarah Johnson')">Book Now</button></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Online Consultation. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Details</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevents default form submission
+            window.location.href = "listofdoctor.html"; // Redirects to Doctors List page
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -13,10 +19,19 @@
     <main>
         <section>
             <h2>Please Enter Your Details</h2>
-            <form>
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="tel" placeholder="Phone Number" required>
+            <form onsubmit="submitForm(event)">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" placeholder="Full Name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" placeholder="Email Address" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" required>
+
                 <button type="submit">Submit</button>
             </form>
         </section>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Availability</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const doctorName = urlParams.get("doctor");
+            if (doctorName) {
+                document.getElementById("doctor-name").textContent = doctorName;
+            }
+            generateAvailability();
+        });
+
+        function generateAvailability() {
+            const daysAhead = 5; 
+            const today = new Date();
+            const table = document.getElementById("availability-table");
+
+            const timeSlots = [
+                "10:00 AM - 11:00 AM", 
+                "11:30 AM - 12:30 PM", 
+                "2:00 PM - 3:00 PM", 
+                "3:30 PM - 4:30 PM"
+            ];
+
+            for (let i = 0; i < daysAhead; i++) {
+                let currentDate = new Date();
+                currentDate.setDate(today.getDate() + i);
+                let dateString = currentDate.toDateString(); 
+
+                let row = table.insertRow();
+                let cellDate = row.insertCell(0);
+                let cellSlots = row.insertCell(1);
+
+                cellDate.textContent = dateString;
+
+                timeSlots.forEach(slot => {
+                    let btn = document.createElement("button");
+                    btn.textContent = slot;
+                    btn.classList.add("slot-button");
+                    btn.onclick = function() {
+                        bookSlot(dateString, slot);
+                    };
+                    cellSlots.appendChild(btn);
+                    cellSlots.appendChild(document.createElement("br"));
+                });
+            }
+        }
+
+        function bookSlot(date, time) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const doctorName = urlParams.get("doctor");
+            window.location.href = `conformation.html?doctor=${encodeURIComponent(doctorName)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Doctor Availability</h1>
+    </header>
+    <main>
+        <section>
+            <h2 id="doctor-name"></h2>
+            <p>Select a suitable date and time for your consultation.</p>
+
+            <table id="availability-table">
+                <tr>
+                    <th>Date</th>
+                    <th>Available Time Slots</th>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Online Consultation. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
